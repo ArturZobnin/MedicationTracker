@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Мои лекарства</title>
+
+    <meta name="theme-color" content="#f4f7f5">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header class="header">
+            <div class="date" id="currentDate"></div>
+            <h1>Мои лекарства</h1>
+        </header>
+
+<main class="content">
+
+    <!-- Вкладка Сегодня -->
+    <section id="todayPage" class="page active">
+
+        <section class="progress-card">
+            <div class="progress-title">
+                Выполнение расписания
+            </div>
+
+            <div class="progress-numbers" id="progressNumbers">
+                0 из 0
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </section>
+
+        <div class="section-header">
+
+    <h2 class="section-title">Сегодня</h2>
+
+    <button
+        class="add-button"
+        onclick="openMedicationForm()"
+    >
+        + Добавить
+    </button>
+
+</div>
+
+        <div id="medicationList"></div>
+
+    </section>
+
+    <!-- Вкладка Расписание -->
+    <section id="schedulePage" class="page">
+
+        <h2 class="section-title">Расписание</h2>
+
+        <div class="placeholder-card">
+            <div class="placeholder-icon">📅</div>
+
+            <h3>Расписание приёма</h3>
+
+            <p>
+                Здесь появится настройка времени,
+                дней недели и курсов лекарств.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Вкладка История -->
+    <section id="historyPage" class="page">
+
+        <h2 class="section-title">История приёма</h2>
+
+        <div class="history-date-card">
+
+            <label for="historyDate">
+                Выбери дату
+            </label>
+
+            <input
+                type="date"
+                id="historyDate"
+            >
+
+        </div>
+
+        <section class="progress-card">
+
+            <div class="progress-title">
+                Выполнение за выбранный день
+            </div>
+
+            <div
+                class="progress-numbers"
+                id="historyProgressNumbers"
+            >
+                0 из 0
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="historyProgressFill"
+                ></div>
+
+            </div>
+
+        </section>
+
+        <div id="historyMedicationList"></div>
+
+    </section>
+
+    <!-- Вкладка Настройки -->
+    <section id="settingsPage" class="page">
+
+        <h2 class="section-title">Настройки</h2>
+
+        <div class="placeholder-card">
+
+            <div class="placeholder-icon">⚙️</div>
+
+            <h3>Настройки приложения</h3>
+
+            <p>
+                Здесь появятся настройки оформления,
+                уведомлений и резервного копирования.
+            </p>
+
+        </div>
+
+    </section>
+
+  <!-- Форма добавления / редактирования лекарства -->
+<div id="medicationModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">Новое лекарство</h2>
+
+            <button
+                class="close-button"
+                onclick="closeMedicationForm()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form id="medicationForm">
+
+            <input
+                type="hidden"
+                id="medicationId"
+            >
+
+            <label for="medicationName">
+                Название препарата
+            </label>
+
+            <input
+                type="text"
+                id="medicationName"
+                placeholder="Например, Энтерол"
+                required
+            >
+
+            <label for="medicationDosage">
+                Дозировка
+            </label>
+
+            <input
+                type="text"
+                id="medicationDosage"
+                placeholder="Например, 2 капсулы"
+                required
+            >
+
+            <<label for="medicationTime">Время приёма</label>
+<input type="time" id="medicationTime" required>
+
+<label>Дни приёма</label>
+
+<div class="days-selector">
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="1">
+        <span>Пн</span>
+    </label>
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="2">
+        <span>Вт</span>
+    </label>
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="3">
+        <span>Ср</span>
+    </label>
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="4">
+        <span>Чт</span>
+    </label>
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="5">
+        <span>Пт</span>
+    </label>
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="6">
+        <span>Сб</span>
+    </label>
+
+    <label class="day-option">
+        <input type="checkbox" name="medicationDay" value="7">
+        <span>Вс</span>
+    </label>
+
+</div>
+
+<button type="submit" class="save-button">Сохранить</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</main>
+
+    </div>
+
+<nav class="bottom-nav">
+
+    <div
+        class="nav-item active"
+        onclick="switchPage('todayPage', this)"
+    >
+        <div class="nav-icon">☑</div>
+        Сегодня
+    </div>
+
+    <div
+        class="nav-item"
+        onclick="switchPage('schedulePage', this)"
+    >
+        <div class="nav-icon">▦</div>
+        Расписание
+    </div>
+
+    <div
+        class="nav-item"
+        onclick="switchPage('historyPage', this)"
+    >
+        <div class="nav-icon">◷</div>
+        История
+    </div>
+
+    <div
+        class="nav-item"
+        onclick="switchPage('settingsPage', this)"
+    >
+        <div class="nav-icon">⚙</div>
+        Настройки
+    </div>
+
+</nav>
+
+
+<script src="app.js"></script>
+</body>
+</html>

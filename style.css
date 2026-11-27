@@ -1,0 +1,517 @@
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f4f7f5;
+            color: #1d2922;
+            padding: 20px;
+        }
+
+        .app {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .date {
+            color: #78857c;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 750;
+        }
+
+        .progress-card {
+            background: #1f3829;
+            color: white;
+            border-radius: 22px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .progress-title {
+            font-size: 14px;
+            color: #c4d9ca;
+        }
+
+        .progress-numbers {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #48604e;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #9ce0b1;
+            border-radius: 20px;
+            transition: width 0.3s;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .medication {
+            background: white;
+            padding: 17px;
+            border-radius: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .med-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: #eaf3ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            flex-shrink: 0;
+        }
+
+        .med-info {
+            flex: 1;
+        }
+
+        .med-name {
+            font-size: 16px;
+            font-weight: 650;
+        }
+
+        .med-details {
+            font-size: 13px;
+            color: #78857c;
+            margin-top: 4px;
+        }
+
+        .taken-button {
+            border: none;
+            background: #eaf3ed;
+            color: #287345;
+            padding: 10px 13px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .taken-button.done {
+            background: #287345;
+            color: white;
+        }
+
+        .empty {
+            text-align: center;
+            color: #8b968e;
+            padding: 30px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e8ece9;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 5px 22px;
+        }
+
+        .nav-item {
+            color: #87928a;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .nav-item.active {
+            color: #287345;
+            font-weight: 700;
+        }
+
+        .nav-icon {
+            font-size: 21px;
+            margin-bottom: 4px;
+        }
+
+        .content {
+            padding-bottom: 100px;
+        }
+/* Навигация между страницами */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* Карточки-заглушки */
+
+.placeholder-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.placeholder-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.placeholder-card h3 {
+    margin-bottom: 10px;
+}
+
+.placeholder-card p {
+    color: #78857c;
+    line-height: 1.5;
+}
+
+
+/* Выбор даты */
+
+.history-date-card {
+    background: white;
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.history-date-card label {
+    display: block;
+    font-size: 14px;
+    color: #78857c;
+    margin-bottom: 10px;
+}
+
+.history-date-card input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dfe7e1;
+    border-radius: 12px;
+    background: #f8faf8;
+    color: #1d2922;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+
+/* Карточка истории */
+
+.history-status {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.history-status.taken {
+    color: #287345;
+}
+
+.history-status.not-taken {
+    color: #9a6b45;
+}
+
+.history-button {
+    padding: 9px 12px;
+    border-radius: 11px;
+    font-size: 13px;
+    border: none;
+    font-weight: 600;
+}
+
+.history-button.taken {
+    background: #eaf3ed;
+    color: #287345;
+}
+
+.history-button.not-taken {
+    background: #f1f2f1;
+    color: #78857c;
+}
+
+
+/* Активная нижняя навигация */
+
+.nav-item {
+    cursor: pointer;
+    flex: 1;
+    user-select: none;
+}
+
+.nav-item.active {
+    color: #287345;
+    font-weight: 700;
+}
+
+/* Заголовок раздела */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.section-header .section-title {
+    margin-bottom: 0;
+}
+
+.add-button {
+    background: #287345;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+/* Модальное окно */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 24px;
+    padding: 22px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.modal-header h2 {
+    font-size: 21px;
+}
+
+.close-button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #f1f3f1;
+    border-radius: 50%;
+    font-size: 25px;
+    color: #536057;
+}
+
+
+/* Поля формы */
+
+#medicationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#medicationForm label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+#medicationForm input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dfe7e1;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    background: #f8faf8;
+    color: #1d2922;
+}
+
+.save-button {
+    margin-top: 12px;
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    background: #287345;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* Кнопки управления лекарством */
+
+.med-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.edit-button,
+.delete-button {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.edit-button {
+    color: #627568;
+}
+
+.delete-button {
+    color: #c15b5b;
+}
+
+
+/* Карточки */
+
+.medication {
+    flex-wrap: wrap;
+}
+
+/* Выбор дней недели */
+
+.days-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    margin: 10px 0 18px;
+}
+
+.day-option {
+    flex: 1;
+    cursor: pointer;
+}
+
+.day-option input {
+    display: none;
+}
+
+.day-option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+
+    border: 1px solid #d5ded8;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #333333;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: 0.2s;
+}
+
+.day-option input:checked + span {
+    background: #287345;
+    color: white;
+    border-color: #287345;
+}
+
+.day-option input:checked + span {
+    box-shadow: 0 2px 6px rgba(40, 115, 69, 0.2);
+}
+
+/* Группы лекарств */
+
+.medication-group {
+    margin-bottom: 24px;
+}
+
+/* Заголовок группы */
+
+.group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.group-title {
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+.group-medications {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Прогресс группы */
+
+.group-progress {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* Полоса прогресса группы */
+
+.group-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.group-progress-fill {
+    height: 100%;
+    background: #22c55e;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
